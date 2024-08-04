@@ -44,9 +44,11 @@ def mainMenu():
     view()
 
 def add():
-  thought = input("Diary entry:\n> ")
   timestamp = datetime.datetime.now()
   key = f"mes{timestamp}"
+  print(f"Diary entry for {timestamp}")
+  print()
+  thought = input("Dear diary\n> ")
   db[key] = thought
   time.sleep(1)
   os.system("clear")
@@ -64,11 +66,14 @@ def view():
     if(counter%1==0):
       carryOn = input("Next entry? (yes or no):\n> ")
       print()
-      if(carryOn.lower()=="no"):
-        break
-  time.sleep(1)
-  os.system("clear")
-  mainMenu()
+      if carryOn.lower() == "yes":
+        continue
+      elif(carryOn.lower()=="no"):
+        mainMenu()
+    mainMenu()
+    time.sleep(1)
+    os.system("clear")
+    mainMenu()
 
 
 while True:
