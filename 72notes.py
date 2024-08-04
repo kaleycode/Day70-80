@@ -1,4 +1,4 @@
-#first attempt from day 72
+#first attempt from day 72:
 
 from replit import db
 import os, time, datetime, random
@@ -6,16 +6,12 @@ def newUser():
   print()
   username = input("Username: ")
   password = input("Password: ")
-  keys = db.keys()
-  if username in keys:
-    print("That username is already taken.")
-    return
   salt = random.randint(1000, 9999)
   newPassword = f"{password}{salt}"
   newPassword = hash(newPassword)
   db[username] = {"password": newPassword, "salt": salt}
   print()
-  print("Details Stored")
+  print("User created")
   time.sleep(1.7)
   os.system("clear")
 def login():
@@ -43,7 +39,7 @@ def mainMenu():
   menu = input("1: Add an entry\n2: View entries\n> ")
   if menu == "1":
     add()
-  elif menu == "2":
+  else:
     view()
 
 def add():
@@ -64,7 +60,7 @@ def view():
     time.sleep(0.3)
     counter+=1
     if(counter%1==0):
-      carryOn = input("See next entry? (yes or no):\n> ")
+      carryOn = input("Next entry? (yes or no):\n> ")
       print()
       if(carryOn.lower()=="no"):
         break
